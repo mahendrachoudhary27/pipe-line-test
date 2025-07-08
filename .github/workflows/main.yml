@@ -1,0 +1,23 @@
+name: Manual Ping Check
+
+on:
+  workflow_dispatch:  # Enables manual trigger from GitHub UI
+
+jobs:
+  ping:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: 🧾 Checkout repository
+      uses: actions/checkout@v4
+
+    - name: 🐍 Set up Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: '3.x'
+
+    - name: 📦 Install requests module
+      run: pip install requests
+
+    - name: 🚀 Run ping check
+      run: python ping_checker.py --url https://golfcc.ws-euc1.gigaspaces.net
