@@ -1,11 +1,16 @@
-name: Manual Ping Check
+name: Manual Environment Health & Login Check
 
 on:
-  workflow_dispatch:  # Enables manual trigger from GitHub UI
+  workflow_dispatch:  # Allows manual trigger from GitHub UI
 
 jobs:
-  ping:
+  env-check:
     runs-on: ubuntu-latest
+
+    env:
+      EMAIL: ${{ secrets.EMAIL }}
+      PASSWORD: ${{ secrets.PASSWORD }}
+      APPLICATION_ID: ${{ secrets.APPLICATION_ID }}
 
     steps:
     - name: 🧾 Checkout repository
@@ -16,8 +21,8 @@ jobs:
       with:
         python-version: '3.x'
 
-    - name: 📦 Install requests module
-      run: pip install requests
+    - name: 📦 Install dependencies
+      run: pip install requests pytz
 
-    - name: 🚀 Run ping check
-      run: python ping_checker.py --url https://golfcc.ws-euc1.gigaspaces.net
+    - name: 🚀 Run environment check + login
+      run: python env_health_login_check.py --url https://golfcc.ws-euc1.gigaspaces.net
