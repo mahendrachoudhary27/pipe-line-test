@@ -2,6 +2,5 @@
     "email": "erag-noc@gigaspaces.com",
     "password": "Gigaspaces123!",
     "application_id": 1,
-    "slack_webhook_url": "https://hooks.slack.com/services/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",
     "alerting_enabled": false
 }
